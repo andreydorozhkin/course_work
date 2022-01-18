@@ -1,7 +1,9 @@
-from typing import Optional, Dict
-import dijkstra
+from typing import Optional, Dict, List
+from dijkstra import Dijkstra
 from weighted_graph import WeightedGraph
+from weighted_edge import WeightedEdge
 
+WeightedPath = List[WeightedEdge]  # type alias for paths
 
 city_graph2: WeightedGraph[str] = WeightedGraph(
     ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta",
@@ -33,13 +35,14 @@ city_graph2.add_edge_by_vertices("Boston", "New York", 190)
 city_graph2.add_edge_by_vertices("New York", "Philadelphia", 81)
 city_graph2.add_edge_by_vertices("Philadelphia", "Washington", 123)
 
-distances, path_dict = dijkstra.dijkstra(city_graph2, "Los Angeles")
-name_distance: Dict[str, Optional[int]] = dijkstra.distance_array_to_vertex_dict(city_graph2, distances)
+Path = Dijkstra()
+distances, path_dict = Path.execute_alg(city_graph2, "Los Angeles")
+name_distance: Dict[str, Optional[int]] = Path.distance_array_to_vertex_dict(city_graph2, distances)
 print("Distances from Los Angeles:")
 for key, value in name_distance.items():
     print(f"{key} : {value}")
 print("")  # blank line
 
 print("Shortest path from Los Angeles to Boston:")
-path: dijkstra.WeightedPath = dijkstra.path_dict_to_path(city_graph2.index_of("Los Angeles"), city_graph2.index_of("Boston"), path_dict)
-dijkstra.print_weighted_path(city_graph2, path)
+path: WeightedPath = Path.path_dict_to_path(city_graph2.index_of("Los Angeles"), city_graph2.index_of("Boston"), path_dict)
+Path.print_weighted_path(city_graph2, path)
