@@ -2,6 +2,7 @@ from typing import Optional, Dict
 import dijkstra
 from weighted_graph import WeightedGraph
 
+
 city_graph2: WeightedGraph[str] = WeightedGraph(
     ["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta",
      "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])

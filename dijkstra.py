@@ -1,24 +1,12 @@
 from __future__ import annotations
 from typing import TypeVar, List, Optional, Tuple, Dict
-from dataclasses import dataclass
 from weighted_graph import WeightedGraph
 from weighted_edge import WeightedEdge
 from priority_queue import PriorityQueue
+from dijkstra_node import DijkstraNode
 
 V = TypeVar('V') # type of the vertices in the graph
 WeightedPath = List[WeightedEdge] # type alias for paths
-
-
-@dataclass
-class DijkstraNode:
-    vertex: int
-    distance: float
-
-    def __lt__(self, other: DijkstraNode) -> bool:
-        return self.distance < other.distance
-
-    def __eq__(self, other: DijkstraNode) -> bool:
-        return self.distance == other.distance
 
 
 def dijkstra(wg: WeightedGraph[V], root: V) -> Tuple[List[Optional[float]], Dict[int, WeightedEdge]]:
