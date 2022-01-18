@@ -64,6 +64,6 @@ class Dijkstra:
     def print_weighted_path(wg: WeightedGraph, wp: WeightedPath) -> None:
         for edge in wp:
             print(f"{wg.vertex_at(edge.u)} {edge.weight}> {wg.vertex_at(edge.v)}")
-        print(f"Total Weight: {sum([e.weight for e in wp])}")
+        print(f"Расстояние между вершинами графа: {sum([e.weight for e in wp])}")
 
 
