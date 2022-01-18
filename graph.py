@@ -104,16 +104,4 @@ if __name__ == "__main__":
     city_graph.add_edge_by_vertices("Philadelphia", "Washington")
     print(city_graph)
 
-    # Reuse BFS from Chapter 2 on city_graph
-    import sys
-    sys.path.insert(0, '..') # so we can access the Chapter2 package in the parent directory
-    from Chapter2.generic_search import bfs, Node, node_to_path
-
-    bfs_result: Optional[Node[V]] = bfs("Boston", lambda x: x == "Miami", city_graph.neighbors_for_vertex)
-    if bfs_result is None:
-        print("No solution found using breadth-first search!")
-    else:
-        path: List[V] = node_to_path(bfs_result)
-        print("Path from Boston to Miami:")
-        print(path)
 
