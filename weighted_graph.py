@@ -35,6 +35,12 @@ class WeightedGraph(Generic[V], Graph[V]):
             desc += f"{self.vertex_at(i)} -> {self.neighbors_for_index_with_weights(i)}\n"
         return desc
 
+    def get_edge(self) -> List[List[WeightedEdge]]:
+        return self._edges
+
+    def get_vertices(self) -> List[V]:
+        return self._vertices
+
 
 if __name__ == "__main__":
     city_graph2: WeightedGraph[str] = WeightedGraph(["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])

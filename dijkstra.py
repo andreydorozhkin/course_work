@@ -1,12 +1,12 @@
 from __future__ import annotations
 from typing import TypeVar, List, Optional, Tuple, Dict
 from dataclasses import dataclass
-from mst import WeightedPath, print_weighted_path
 from weighted_graph import WeightedGraph
 from weighted_edge import WeightedEdge
 from priority_queue import PriorityQueue
 
 V = TypeVar('V') # type of the vertices in the graph
+WeightedPath = List[WeightedEdge] # type alias for paths
 
 
 @dataclass
@@ -69,6 +69,16 @@ def path_dict_to_path(start: int, end: int, path_dict: Dict[int, WeightedEdge]) 
         e = path_dict[e.u]
         edge_path.append(e)
     return list(reversed(edge_path))
+
+
+def total_weight(wp: WeightedPath) -> float:
+    return sum([e.weight for e in wp])
+
+
+def print_weighted_path(wg: WeightedGraph, wp: WeightedPath) -> None:
+    for edge in wp:
+        print(f"{wg.vertex_at(edge.u)} {edge.weight}> {wg.vertex_at(edge.v)}")
+    print(f"Total Weight: {total_weight(wp)}")
 
 
 if __name__ == "__main__":
